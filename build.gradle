@@ -13,18 +13,13 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.10'
 }
 apply plugin: 'idea'
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
 
-group 'tech.justagod'
+group = 'io.github.vizzi-dk'
 archivesBaseName = 'cutter'
 version '2.1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-}
-signing {
-    sign configurations.archives
 }
 sourceSets {
     main {
@@ -68,53 +63,6 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
-            pom {
-                name = 'Cutter'
-                description = 'Gradle plugin to simplify mods protection'
-                url = 'https://gitlab.com/hvalick2111/cutter'
-
-                scm {
-                    connection = 'scm:git:https://gitlab.com/hvalick2111/cutter.git'
-                    developerConnection = 'scm:git:https://gitlab.com/hvalick2111/cutter.git'
-                    url = 'https://gitlab.com/hvalick2111/cutter'
-                }
-
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id = 'JustAGod'
-                        name = 'Yury Barinov'
-                        email = 'hvalick2111@gmail.com'
-                    }
-                }
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
-            credentials {
-                username = sonatypeUsername
-                password = sonatypePassword
-            }
-        }
-    }
-}
 
 dependencies {
     compile gradleApi()
