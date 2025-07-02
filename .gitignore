@@ -1,0 +1,15 @@
+out\
+gradle\wrapper\gradle-wrapper.jar
+**/build/**
+**/out/**
+.gradle/**
+.gradle\
+**.rar
+cutter-cache\
+.idea\
+libs/
+gradle-test/
+gradle.properties
+
+# Project exclude paths
+/forge/
